@@ -1,0 +1,8 @@
+---
+ev3rt_zip_url: http://www.toppers.jp/download.cgi/ev3rt-beta6-3-release.zip
+ev3rt_zip_file: ev3rt-beta6-3-release.zip
+ev3rt_dir: ev3rt-beta6-3-release
+
+cfg_tar_url: http://toppers.jp/download.cgi/cfg-osx-static-1_9_5.tar.gz
+cfg_tar_file: cfg-osx-static-1_9_5.tar.gz
+...

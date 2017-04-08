@@ -1,0 +1,34 @@
+---
+- name: Create temp
+  file:
+    path: "{{ temp_dir }}"
+    state: directory
+
+- name: Download ev3rt
+  get_url:
+    url: "{{ ev3rt_zip_url }}"
+    dest: "{{ temp_dir }}/{{ ev3rt_zip_file }}"
+
+- name: Create dest
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+
+- name: Unarchive ev3rt-(.*).zip
+  unarchive:
+    src: "{{ temp_dir }}/{{ ev3rt_zip_file }}"
+    dest: "{{ dest_dir }}"
+
+- name: Unarchive hrp2
+  command:
+    tar xvf "{{ dest_dir }}/{{ ev3rt_dir }}/hrp2.tar.xz" -C "{{ dest_dir }}/{{ ev3rt_dir }}/"
+
+- name: Download cfg
+  get_url:
+    url: "{{ cfg_tar_url }}"
+    dest: "{{ temp_dir }}/{{ cfg_tar_file }}"
+
+- name: Unarchive cfg
+  command:
+    tar xvf "{{ temp_dir }}/{{ cfg_tar_file }}" -C "{{ dest_dir }}/{{ ev3rt_dir }}/hrp2/cfg/cfg/"
+...

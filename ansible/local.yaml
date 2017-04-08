@@ -1,0 +1,13 @@
+---
+- name: Install dev-ev3rt
+  hosts: local
+  connection: local
+
+  vars:
+    dest_dir: ../devenv
+    temp_dir: ../temp
+
+  roles:
+    - hrp2
+    - tools
+...

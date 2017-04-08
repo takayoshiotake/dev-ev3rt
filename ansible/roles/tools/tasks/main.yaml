@@ -1,0 +1,35 @@
+---
+- name: Create temp
+  file:
+    path: "{{ temp_dir }}"
+    state: directory
+
+- name: Create dest
+  file:
+    path: "{{ dest_dir }}"
+    state: directory
+
+- name: Create dest/bin
+  file:
+    path: "{{ dest_dir }}/bin"
+    state: directory
+
+- name: Download mkimage
+  get_url:
+    url: "{{ mkimage_url }}"
+    dest: "{{ dest_dir }}/bin/mkimage"
+
+- name: Chmod mkimage
+  file:
+    path: "{{ dest_dir }}/bin/mkimage"
+    mode: "0744"
+
+- name: Download gcc-arm
+  get_url:
+    url: "{{ gcc_arm_tar_url }}"
+    dest: "{{ temp_dir }}/{{ gcc_arm_tar_file }}"
+
+- name: Unarchive gcc-arm
+  command:
+    tar xvf "{{ temp_dir }}/{{ gcc_arm_tar_file }}" -C "{{ dest_dir }}"
+...
